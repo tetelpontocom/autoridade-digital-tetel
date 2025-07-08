@@ -88,10 +88,21 @@ export default function TetelLanding() {
       plan: "",
     })
 
-    // Abrir WhatsApp após 3 segundos
-    setTimeout(() => {
-      window.open(`https://wa.me/5582999176900?text=${encodeURIComponent(whatsappMessage)}`, "_blank")
-    }, 3000)
+    // Detectar se é mobile e abrir WhatsApp imediatamente
+    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
+
+    if (isMobile) {
+      // No mobile, abrir WhatsApp imediatamente
+      setTimeout(() => {
+        const whatsappUrl = `https://wa.me/5582999176900?text=${encodeURIComponent(whatsappMessage)}`
+        window.open(whatsappUrl, "_blank")
+      }, 1000) // Reduzir delay para 1 segundo no mobile
+    } else {
+      // No desktop, manter delay de 3 segundos
+      setTimeout(() => {
+        window.open(`https://wa.me/5582999176900?text=${encodeURIComponent(whatsappMessage)}`, "_blank")
+      }, 3000)
+    }
   }
 
   const handleWhatsAppClick = (source: string) => {
@@ -152,7 +163,7 @@ Quando podemos conversar? 📞`
       {/* Hero Section - Redesenhado */}
       <section className="relative bg-gradient-to-br from-slate-50 via-blue-50 to-white py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
+          <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-start lg:items-center">
             <div className="space-y-8">
               <div className="space-y-6">
                 <Badge className="bg-blue-100 text-blue-800 font-medium px-4 py-2">
@@ -209,8 +220,8 @@ Quando podemos conversar? 📞`
               </div>
             </div>
 
-            <div className="relative">
-              <Card className="p-8 shadow-xl border border-gray-100 bg-white">
+            <div className="relative mt-8 lg:mt-0">
+              <Card className="p-6 lg:p-8 shadow-xl border border-gray-100 bg-white">
                 <div className="text-center space-y-6">
                   <div className="relative">
                     <Image
@@ -1299,7 +1310,24 @@ Quando podemos conversar? 📞`
                   className="flex-1 bg-green-600 hover:bg-green-700 text-white text-sm py-2"
                   onClick={() => {
                     setShowThankYou(false)
-                    handleWhatsAppClick("Modal Agradecimento")
+                    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+                      navigator.userAgent,
+                    )
+                    if (isMobile) {
+                      // Tentar abrir o app nativo do WhatsApp no mobile
+                      const whatsappUrl = `whatsapp://send?phone=5582999176900&text=${encodeURIComponent("Olá Tetel! Vi sua landing page e gostaria de mais informações sobre Autoridade Digital.")}`
+                      window.location.href = whatsappUrl
+
+                      // Fallback para versão web se o app não abrir
+                      setTimeout(() => {
+                        window.open(
+                          `https://wa.me/5582999176900?text=${encodeURIComponent("Olá Tetel! Vi sua landing page e gostaria de mais informações sobre Autoridade Digital.")}`,
+                          "_blank",
+                        )
+                      }, 1000)
+                    } else {
+                      handleWhatsAppClick("Modal Agradecimento")
+                    }
                   }}
                 >
                   <MessageCircle className="w-4 h-4 mr-1" />
