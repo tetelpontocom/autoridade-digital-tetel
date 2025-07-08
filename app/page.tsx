@@ -163,8 +163,8 @@ Quando podemos conversar? 📞`
       {/* Hero Section - Redesenhado */}
       <section className="relative bg-gradient-to-br from-slate-50 via-blue-50 to-white py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-start lg:items-center">
-            <div className="space-y-8">
+          <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-start">
+            <div className="space-y-8 lg:pr-8">
               <div className="space-y-6">
                 <Badge className="bg-blue-100 text-blue-800 font-medium px-4 py-2">
                   <Award className="w-4 h-4 mr-2" />
@@ -177,7 +177,7 @@ Quando podemos conversar? 📞`
                     <div className="absolute -bottom-2 left-0 w-full h-1 bg-blue-600 rounded opacity-20"></div>
                   </span>
                 </h1>
-                <p className="text-xl text-gray-600 leading-relaxed max-w-2xl">
+                <p className="text-xl text-gray-600 leading-relaxed">
                   <strong>Metodologia comprovada para líderes políticos e empresariais</strong> que querem se posicionar
                   como referência em seus segmentos, transformando expertise em reconhecimento digital sem precisar
                   dominar ferramentas técnicas.
@@ -220,15 +220,15 @@ Quando podemos conversar? 📞`
               </div>
             </div>
 
-            <div className="relative mt-8 lg:mt-0">
-              <Card className="p-6 lg:p-8 shadow-xl border border-gray-100 bg-white">
+            <div className="relative lg:pl-8">
+              <Card className="p-6 lg:p-8 shadow-xl border border-gray-100 bg-white max-w-sm mx-auto lg:mx-0">
                 <div className="text-center space-y-6">
                   <div className="relative">
                     <Image
                       src="/tetel-photo.jpg"
                       alt="Tetel - Autoridade Digital"
-                      width={200}
-                      height={200}
+                      width={180}
+                      height={180}
                       className="rounded-full mx-auto border-4 border-blue-100 shadow-lg"
                     />
                     <div className="absolute -top-2 -right-2 bg-green-500 text-white text-xs px-2 py-1 rounded-full font-medium">
